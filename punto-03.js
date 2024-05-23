@@ -22,47 +22,59 @@
 function liveSheep( pen ){
     return pen.filter ( animal => animal == 'oveja').length;
     
- }
+}
 
- console.log ('La cantidad de ovejas sanas en el corral es de:',  liveSheep ( corrales.flat()), 'ovejas')
+console.log ('La cantidad de ovejas sanas en el corral es de:',  liveSheep ( corrales.flat()), 'ovejas')
 
  //Contar los espacios libres: Identifica cuántos espacios vacíos hay en los corrales, considerando que los espacios con animales muertos también deben ser liberados.
 
- function freeSpots ( pen ){
+function freeSpots ( pen ){
     return pen.filter ( spot => spot == '' || spot == 'muerta').length;
- }
+}
 
- console.log ( 'La cantidad de espacios libres es de', freeSpots ( corrales.flat()), 'espacios, contando los espacios en donde hay ovejas muertas')
+console.log ( 'La cantidad de espacios libres es de', freeSpots ( corrales.flat()), 'espacios, contando los espacios en donde hay ovejas muertas')
 
- //Neutralizar al lobo: Si encuentras un lobo en algún corral, elimínalo (imagina que lo conviertes en una útil chaqueta de piel) y cuenta el espacio que deja libre como si estuviera vacío.
+//  //Neutralizar al lobo: Si encuentras un lobo en algún corral, elimínalo (imagina que lo conviertes en una útil chaqueta de piel) y cuenta el espacio que deja libre como si estuviera vacío.
 
- function findWolf ( pen ) {
-   const updatePens = [];
+function findWolf ( pen ) {
+const updatePens = [];
 
-   for ( const spot of pen ){
-    const updatePen = spot.map( animal => {
-        if ( animal == 'lobo' || animal == 'muerta'){
-            return '';
-        }
-        else { 
-            return animal 
-        }            
-    });
-
-    updatePens.push( updatePen );
-
-   }
-
-   return updatePens; 
- }
-
- const updatePens = findWolf ( corrales );
- console.log ( 'El nuevo corral habiendo sacado al lobo y a las ovejas muertas, sería:', updatePens );
-
- function freeSpots ( pen ){
-        return pen.filter ( spot => spot === '').length;
+for ( const spot of pen ){
+const updatePen = spot.map( animal => {
+    if ( animal == 'lobo' || animal == 'muerta'){
+        return '';
     }
-    
-     console.log ( 'La cantidad de lugares libres en los corrales es de:', freeSpots ( updatePens.flat()), 'espacios')
+    else { 
+        return animal 
+    }            
+});
+
+updatePens.push( updatePen );
+
+}
+
+return updatePens; 
+}
+
+const updatePens = findWolf ( corrales );
+console.log ( 'El nuevo corral habiendo sacado al lobo y a las ovejas muertas, sería:', updatePens );
+
+function freeSpots ( pen ){
+    return pen.filter ( spot => spot === '').length;
+}
+
+    console.log ( 'La cantidad de lugares libres en los corrales es de:', freeSpots ( updatePens.flat()), 'espacios')
 
 
+//Incorporar nuevas ovejas: Utiliza el dinero obtenido por eliminar lobos para comprar 2 nuevas ovejas por cada uno. Busca espacios libres en los corrales para colocarlas y aumentar la población ovina.
+
+// for ( i = 0; i < corrales.length; i++ ){
+//     if( i = '' ){
+//         // corrales.replace ( '', 'oveja' )
+//     }
+//     else{
+
+//     }
+// }
+
+// console.log( corrales )
